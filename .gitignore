@@ -1,0 +1,78 @@
+# Standardised SNEK Initiative .gitignore for C/C++ projects using Visual Studio and vcpkg
+
+# Visual Studio temporary files
+.vs/
+x64/
+x86/
+Debug/
+Release/
+ARM/
+ARM64/
+*.exe
+*.pdb
+*.obj
+*.lib
+*.ilk
+*.exp
+*.idb
+*.ipch
+*.aps
+*.pch
+*.suo
+*.user
+*.tmp
+*.log
+*.tlog/
+*.VC.db
+*.VC.opendb
+*.VC.VC.opendb
+*.sln.docstates
+
+# Build systems
+out/
+build/
+bin/
+obj/
+
+# Project specific users
+*.vcxproj.user
+*.vcxproj.filters.user
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Temporary and backup files
+*.tmp
+*.temp
+*~
+*.bak
+*.backup
+*.swp
+*.swo
+
+# Dependencies
+vcpkg/
+packages/
+node_modules/
+
+# Secrets and environment
+secrets/
+*.key
+*.pem
+*.env
+local_settings.json
+
+# Logs and archives
+*.log
+*.zip
+*.7z
+*.rar
+*.gz

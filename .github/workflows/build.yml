@@ -1,0 +1,71 @@
+﻿name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        configuration: [Release, Debug]
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        # Install CMake
+        choco install cmake -y
+        
+    - name: Setup Visual Studio
+      uses: microsoft/setup-msbuild@v1
+      
+    - name: Install .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Create build directory
+      run: mkdir build
+      
+    - name: Configure CMake
+      run: |
+        cd build
+        cmake -G "Visual Studio 17 2022" -A x64 ..
+        
+    - name: Build project
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.configuration }}
+        
+    - name: Run unit tests
+      run: |
+        cd build\Release
+        test_encryption.exe
+
+  security-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run security scanning
+      run: |
+        # Placeholder for security scanning
+        echo "Security scanning would occur here"
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Code quality check
+      run: |
+        # Placeholder for code quality tools
+        echo "Code quality checks would occur here"

@@ -1,0 +1,184 @@
+<Window x:Class="InstallerGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SNEK Iluvatar" Height="550" Width="800"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    
+    <Window.Resources>
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#3B82F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2563EB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#334155"/>
+                                <Setter Property="Foreground" Value="#64748B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#334155" BorderThickness="1" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1E293B"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StepTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#F8FAFC"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <Style x:Key="StepDescription" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,24"/>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#CBD5E1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="#0F172A" CornerRadius="12" BorderBrush="#1E293B" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#1E293B" CornerRadius="12,12,0,0" Padding="24,16" BorderBrush="#334155" BorderThickness="0,0,0,1">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image x:Name="LogoImage" Width="32" Height="32" Margin="0,0,12,0" Stretch="Uniform"/>
+                        <TextBlock Text="SNEK ILUVATAR" FontSize="16" FontWeight="Black" Foreground="#F8FAFC" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Content="✕" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Foreground="#64748B" FontSize="18" Click="Cancel_Click" Cursor="Hand"/>
+                </Grid>
+            </Border>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Row="1" Margin="40,32">
+                <!-- Welcome Step -->
+                <StackPanel x:Name="WelcomePage" Visibility="Visible">
+                    <TextBlock Style="{StaticResource StepTitle}" Text="Welcome to Iluvatar - by The SNEK Initiative"/>
+                    <TextBlock Style="{StaticResource StepDescription}" Text="This wizard will guide you through the installation of your application. Click Next to continue."/>
+                    
+                    <Border Background="#1E293B" CornerRadius="8" Padding="24" BorderBrush="#334155" BorderThickness="1">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,12">
+                                <TextBlock Text="Application" Foreground="#64748B" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock x:Name="PackageName" Text="SNEK Application" HorizontalAlignment="Right" Foreground="#F8FAFC" FontWeight="SemiBold"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,12">
+                                <TextBlock Text="Version" Foreground="#64748B" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock x:Name="PackageVersion" Text="1.0.0" HorizontalAlignment="Right" Foreground="#F8FAFC"/>
+                            </Grid>
+                            <Grid>
+                                <TextBlock Text="Publisher" Foreground="#64748B" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock x:Name="PackageAuthor" Text="SNEK Dev Team" HorizontalAlignment="Right" Foreground="#F8FAFC"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Location Step -->
+                <StackPanel x:Name="LocationPage" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource StepTitle}" Text="Installation Path"/>
+                    <TextBlock Style="{StaticResource StepDescription}" Text="Select the folder where you want to install the application."/>
+
+                    <Grid Margin="0,0,0,24">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="InstallPath" Padding="12" FontSize="14" Background="#1E293B" Foreground="White" BorderBrush="#334155" BorderThickness="1" VerticalContentAlignment="Center"/>
+                        <Button Grid.Column="1" Content="Browse..." Margin="12,0,0,0" Style="{StaticResource SecondaryButton}" Click="Browse_Click"/>
+                    </Grid>
+
+                    <CheckBox x:Name="CreateDesktopShortcut" Content="Create Desktop Shortcut" IsChecked="True"/>
+                    <CheckBox x:Name="CreateStartMenuShortcut" Content="Add to Start Menu" IsChecked="True"/>
+                    <CheckBox x:Name="AddToPath" Content="Add to System PATH" IsChecked="False"/>
+                </StackPanel>
+
+                <!-- Review Step -->
+                <StackPanel x:Name="ConfirmPage" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource StepTitle}" Text="Ready to Install"/>
+                    <TextBlock Style="{StaticResource StepDescription}" Text="Please review the settings before proceeding with the installation."/>
+
+                    <Border Background="#1E293B" CornerRadius="8" Padding="24" BorderBrush="#334155" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Target Directory" Foreground="#64748B" FontSize="12" FontWeight="Bold" Margin="0,0,0,4"/>
+                            <TextBlock x:Name="ConfirmPath" Text="C:\Program Files\SNEK" Foreground="#F8FAFC" TextWrapping="Wrap" Margin="0,0,0,16"/>
+                            
+                            <TextBlock Text="Package Summary" Foreground="#64748B" FontSize="12" FontWeight="Bold" Margin="0,0,0,4"/>
+                            <TextBlock x:Name="ConfirmName" Text="SNEK Application" Foreground="#F8FAFC" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="ConfirmCount" Text="0 files to be extracted" Foreground="#94A3B8" FontSize="13"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Progress Step -->
+                <StackPanel x:Name="ProgressPage" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource StepTitle}" Text="Installing..."/>
+                    <TextBlock Style="{StaticResource StepDescription}" Text="Extracting files and setting up your environment."/>
+
+                    <ProgressBar x:Name="InstallProgress" Height="8" Foreground="#3B82F6" Background="#1E293B" BorderThickness="0" Margin="0,0,0,16"/>
+                    <TextBlock x:Name="ProgressText" Text="Preparing..." Foreground="#94A3B8" FontSize="13" Margin="0,0,0,16"/>
+                    
+                    <ListBox x:Name="LogList" Height="180" Background="#1E293B" BorderBrush="#334155" BorderThickness="1" FontSize="11" Foreground="#64748B" Padding="8"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Footer -->
+            <Border Grid.Row="2" Background="#1E293B" CornerRadius="0,0,12,12" Padding="24,16" BorderBrush="#334155" BorderThickness="0,1,0,0">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button x:Name="PrevButton" Content="Back" Style="{StaticResource SecondaryButton}" Click="Prev_Click" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="CancelButton" Content="Cancel" Style="{StaticResource SecondaryButton}" Click="Cancel_Click" Margin="0,0,12,0"/>
+                        <Button x:Name="NextButton" Content="Next" Style="{StaticResource ModernButton}" Click="Next_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
