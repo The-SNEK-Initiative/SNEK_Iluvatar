@@ -1,4 +1,5 @@
 # SNEK_Iluvatar
+Yes I'm lazy and this was AI generated but it is correct overall.
 
 A comprehensive advanced installer software solution consisting of two integrated applications: the End-User Installer and the Developer Packaging Tool.
 
@@ -15,7 +16,7 @@ A visually stunning GUI installer with modern UX, supporting multiple installati
 A powerful tool for developers to create installation packages, manage dependencies, handle version control, and generate uninstallers.
 
 ## Architecture
-SNEK_Iluvatar uses a single-executable distribution model. The **Developer Tool** embeds the package data directly into the footer of the **Installer GUI** executable. This creates a completely standalone installer that doesn't require any external files.
+SNEK_Iluvatar uses a single executable distribution model. The **Developer Tool** embeds the package data directly into the footer of the **Installer GUI** executable. This creates a completely standalone installer that doesn't require any external files.
 
 ## Features
 - **Standalone Installer**: Generates a single `.exe` file containing everything needed.
