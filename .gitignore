@@ -1,4 +1,4 @@
-# Standardised SNEK Initiative .gitignore for C/C++ projects using Visual Studio and vcpkg
+# Standardised SNEK Initiative .gitignore for C/C++/C# projects using Visual Studio and vcpkg
 
 .vs/
 x64/
