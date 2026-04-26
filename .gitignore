@@ -38,7 +38,6 @@ obj/
 *.vcxproj.user
 *.vcxproj.filters.user
 
-# OS generated files
 Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
@@ -49,7 +48,6 @@ $RECYCLE.BIN/
 .Trashes
 ehthumbs.db
 
-# Temporary and backup files
 *.tmp
 *.temp
 *~
@@ -58,21 +56,18 @@ ehthumbs.db
 *.swp
 *.swo
 
-# Dependencies
 vcpkg/
 packages/
 node_modules/
 
-# Secrets and environment
 secrets/
 *.key
 *.pem
 *.env
 local_settings.json
 
-# Logs and archives
 *.log
 *.zip
 *.7z
 *.rar
-*.gz
+*.gz
