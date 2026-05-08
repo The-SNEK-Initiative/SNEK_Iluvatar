@@ -1,27 +1,29 @@
-# SNEK_Iluvatar
-Yes I'm lazy and this README was AI generated but it is correct overall.
+# SNEK Iluvatar
 
-A comprehensive advanced installer software solution consisting of two integrated applications: the End-User Installer and the Developer Packaging Tool.
+Currently rewriting the README and working on proper code documentation. I will also move towards replacing any and all AI generated code, which appeared due to my laziness at times.
 
-## Overview
+SNEK Iluvatar is a installer software made by The SNEK initiative as a easy to set up packaging tool for developers and  good looking installer for users of their apps.
 
-SNEK_Iluvatar is part of the SNEK initiative, providing a state-of-the-art installation platform with custom encryption, compression, and multi-threaded architecture for secure and efficient software distribution.
+The software attempts to provide a installation platform with AES encryption, GZip compression, and multi threading for secure and efficient software distribution.
 
 ## Applications
 
-### 1. End-User Installer
-A visually stunning GUI installer with modern UX, supporting multiple installation modes, prerequisite checking, rollback, and multi-language support.
+### 1. End user Installer
+A GUI installer with a modern UX, supporting multiple installation modes, prerequisite checking, rollback, and in the future multi language support.
 
 ### 2. Developer Packaging Tool
-A powerful tool for developers to create installation packages, manage dependencies, handle version control, and generate uninstallers.
+A tool for developers to create installation packages, manage dependencies and handle version control.
+
+### 3. Uninstaller software
+Auto packaged with every software, a tiny NASM written tool for quick user side uninstalling, currently still in development, but functioning in its current state.
 
 ## Architecture
-SNEK_Iluvatar uses a single executable distribution model. The **Developer Tool** embeds the package data directly into the footer of the **Installer GUI** executable. This creates a completely standalone installer that doesn't require any external files.
+SNEK Iluvatar uses a single executable distribution model. The Developer Tool embeds the package data directly into the footer of the Installer GUI executable. This creates a standalone installer that does not require any additional external files.
 
 ## Features
-- **Standalone Installer**: Generates a single `.exe` file containing everything needed.
-- **Embedded Data**: Uses a custom footer embedding mechanism (Metadata Offset + SPKG Magic).
-- **Compression**: Built-in GZip compression for smaller installer sizes.
+- **Standalone Installer**: The Developer Tool generates a single `.exe` file containing everything needed.
+- **Embedded Data**: Uses a custom footer embedding mechanism via Metadata Offset combined with SPKG Magic.
+- **Compression**: Built-in GZip compression for smaller installer sizes. Note that depending on the project the encryption percentage may vary.
 - **Encryption**: Optional AES-256 encryption for package data.
 - **Modern UI**: WPF-based interface for both developer and end-user tools.
 
